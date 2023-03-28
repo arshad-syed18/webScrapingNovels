@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 base_url = 'https://novelfull.com/'
 
 # Set the URL of the first chapter
-url = urljoin(base_url, 'hidden-marriage/chapter-2164-my-heart-belongs-to-you.html')
+url = urljoin(base_url, 'hidden-marriage/chapter-1-7-months-pregnant.html')
 
 # Initialize a list to store the chapter dictionaries
 chapters = []
@@ -32,22 +32,15 @@ while True:
 
     # Find the "Next Chapter" button element and extract the URL of the next chapter
     next_chapter_button = soup.find('a', {'id': 'next_chap'})
-    try:
-        if next_chapter_button:
-            next_chapter_url = next_chapter_button['href']
-            url = urljoin(base_url, next_chapter_url)
-        else:
-            print("\n\nEnd")
-            break  # End the loop if there are no more chapters
-    except KeyError:
-        print(next_chapter_button)
-    """
-    finally:
-        with open('C:/Users/arsha/OneDrive/Desktop/hidden-marriage.json', 'w') as f:
-            json.dump(chapters, f)
 
+    # if the next chapter button is none then the code will end
+    if next_chapter_button is not None:
+        next_chapter_url = next_chapter_button['href']
+        url = urljoin(base_url, next_chapter_url)
+    else:
+        print("\n\nEnd")
+        break # End the loop if there are no more chapters
 
 # Save the chapters list to a JSON file
 with open('C:/Users/arsha/OneDrive/Desktop/hidden-marriage.json', 'w') as f:
     json.dump(chapters, f)
-    """
